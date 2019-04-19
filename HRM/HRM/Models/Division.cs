@@ -20,5 +20,7 @@ namespace HRM.Models
 
         public List<Dept> Depts { get; set; }
 
+        public List<Designation> Designation { get; set; }
+
     }
 }

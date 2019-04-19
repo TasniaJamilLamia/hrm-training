@@ -10,112 +10,112 @@ using HRM.Models;
 
 namespace HRM.Controllers
 {
-    public class SectionsController : Controller
+    public class EmployeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Sections
+        // GET: Employees
         public ActionResult Index()
         {
-            var sections = db.Sections.Include(s => s.Dept);
-            return View(sections.ToList());
+            var employee = db.Employee.Include(e => e.Designation);
+            return View(employee.ToList());
         }
 
-        // GET: Sections/Details/5
+        // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.Find(id);
-            if (section == null)
+            Employee employee = db.Employee.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(section);
+            return View(employee);
         }
 
-        // GET: Sections/Create
+        // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode");
+            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName");
             return View();
         }
 
-        // POST: Sections/Create
+        // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,SectionName,DeptId")] Section section)
+        public ActionResult Create([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,DesignationId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Sections.Add(section);
+                db.Employee.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", section.DeptId);
-            return View(section);
+            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName", employee.DesignationId);
+            return View(employee);
         }
 
-        // GET: Sections/Edit/5
+        // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.Find(id);
-            if (section == null)
+            Employee employee = db.Employee.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", section.DeptId);
-            return View(section);
+            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName", employee.DesignationId);
+            return View(employee);
         }
 
-        // POST: Sections/Edit/5
+        // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,SectionCode,SectionName,DeptId")] Section section)
+        public ActionResult Edit([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,DesignationId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(section).State = EntityState.Modified;
+                db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", section.DeptId);
-            return View(section);
+            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName", employee.DesignationId);
+            return View(employee);
         }
 
-        // GET: Sections/Delete/5
+        // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.Find(id);
-            if (section == null)
+            Employee employee = db.Employee.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(section);
+            return View(employee);
         }
 
-        // POST: Sections/Delete/5
+        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Section section = db.Sections.Find(id);
-            db.Sections.Remove(section);
+            Employee employee = db.Employee.Find(id);
+            db.Employee.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

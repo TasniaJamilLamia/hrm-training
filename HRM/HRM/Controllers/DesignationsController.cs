@@ -10,112 +10,107 @@ using HRM.Models;
 
 namespace HRM.Controllers
 {
-    public class SectionsController : Controller
+    public class DesignationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Sections
+        // GET: Designations
         public ActionResult Index()
         {
-            var sections = db.Sections.Include(s => s.Dept);
-            return View(sections.ToList());
+            return View(db.Designation.ToList());
         }
 
-        // GET: Sections/Details/5
+        // GET: Designations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.Find(id);
-            if (section == null)
+            Designation designation = db.Designation.Find(id);
+            if (designation == null)
             {
                 return HttpNotFound();
             }
-            return View(section);
+            return View(designation);
         }
 
-        // GET: Sections/Create
+        // GET: Designations/Create
         public ActionResult Create()
         {
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode");
             return View();
         }
 
-        // POST: Sections/Create
+        // POST: Designations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,SectionName,DeptId")] Section section)
+        public ActionResult Create([Bind(Include = "id,ShortName,DesignationName")] Designation designation)
         {
             if (ModelState.IsValid)
             {
-                db.Sections.Add(section);
+                db.Designation.Add(designation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", section.DeptId);
-            return View(section);
+            return View(designation);
         }
 
-        // GET: Sections/Edit/5
+        // GET: Designations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.Find(id);
-            if (section == null)
+            Designation designation = db.Designation.Find(id);
+            if (designation == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", section.DeptId);
-            return View(section);
+            return View(designation);
         }
 
-        // POST: Sections/Edit/5
+        // POST: Designations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,SectionCode,SectionName,DeptId")] Section section)
+        public ActionResult Edit([Bind(Include = "id,ShortName,DesignationName")] Designation designation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(section).State = EntityState.Modified;
+                db.Entry(designation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", section.DeptId);
-            return View(section);
+            return View(designation);
         }
 
-        // GET: Sections/Delete/5
+        // GET: Designations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.Find(id);
-            if (section == null)
+            Designation designation = db.Designation.Find(id);
+            if (designation == null)
             {
                 return HttpNotFound();
             }
-            return View(section);
+            return View(designation);
         }
 
-        // POST: Sections/Delete/5
+        // POST: Designations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Section section = db.Sections.Find(id);
-            db.Sections.Remove(section);
+            Designation designation = db.Designation.Find(id);
+            db.Designation.Remove(designation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HRM.Models.Section>
+﻿@model IEnumerable<HRM.Models.Designation>
 
 @{
     ViewBag.Title = "Index";
@@ -12,13 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Dept.DeptCode)
+            @Html.DisplayNameFor(model => model.ShortName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SectionCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SectionName)
+            @Html.DisplayNameFor(model => model.DesignationName)
         </th>
         <th></th>
     </tr>
@@ -26,13 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Dept.DeptCode)
+            @Html.DisplayFor(modelItem => item.ShortName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SectionCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SectionName)
+            @Html.DisplayFor(modelItem => item.DesignationName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

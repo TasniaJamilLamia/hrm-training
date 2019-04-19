@@ -197,7 +197,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DeptsController.cs" />
+    <Compile Include="Controllers\DesignationsController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
@@ -220,10 +222,28 @@
     <Compile Include="Migrations\201904171327027_mig04.Designer.cs">
       <DependentUpon>201904171327027_mig04.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904190905151_mig05.cs" />
+    <Compile Include="Migrations\201904190905151_mig05.Designer.cs">
+      <DependentUpon>201904190905151_mig05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904190935491_mig06.cs" />
+    <Compile Include="Migrations\201904190935491_mig06.Designer.cs">
+      <DependentUpon>201904190935491_mig06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904190951084_mig07.cs" />
+    <Compile Include="Migrations\201904190951084_mig07.Designer.cs">
+      <DependentUpon>201904190951084_mig07.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904191113310_mig051.cs" />
+    <Compile Include="Migrations\201904191113310_mig051.Designer.cs">
+      <DependentUpon>201904191113310_mig051.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dept.cs" />
+    <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Division.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -305,11 +325,21 @@
     <Content Include="Views\Depts\Details.cshtml" />
     <Content Include="Views\Depts\Edit.cshtml" />
     <Content Include="Views\Depts\Index.cshtml" />
-    <Content Include="Views\Sections\Create.cshtml" />
     <Content Include="Views\Sections\Delete.cshtml" />
     <Content Include="Views\Sections\Details.cshtml" />
-    <Content Include="Views\Sections\Edit.cshtml" />
+    <Content Include="Views\Designations\Create.cshtml" />
+    <Content Include="Views\Designations\Delete.cshtml" />
+    <Content Include="Views\Designations\Details.cshtml" />
+    <Content Include="Views\Designations\Edit.cshtml" />
+    <Content Include="Views\Designations\Index.cshtml" />
+    <Content Include="Views\Sections\Create.cshtml" />
     <Content Include="Views\Sections\Index.cshtml" />
+    <Content Include="Views\Sections\Edit.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -332,6 +362,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904171327027_mig04.resx">
       <DependentUpon>201904171327027_mig04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190905151_mig05.resx">
+      <DependentUpon>201904190905151_mig05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190935491_mig06.resx">
+      <DependentUpon>201904190935491_mig06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904190951084_mig07.resx">
+      <DependentUpon>201904190951084_mig07.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904191113310_mig051.resx">
+      <DependentUpon>201904191113310_mig051.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
