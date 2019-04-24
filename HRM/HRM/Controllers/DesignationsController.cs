@@ -17,7 +17,8 @@ namespace HRM.Controllers
         // GET: Designations
         public ActionResult Index()
         {
-            return View(db.Designation.ToList());
+            
+            return View(db.Designations.ToList());
         }
 
         // GET: Designations/Details/5
@@ -27,7 +28,7 @@ namespace HRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Designation designation = db.Designation.Find(id);
+            Designation designation = db.Designations.Find(id);
             if (designation == null)
             {
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace HRM.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Designation.Add(designation);
+                db.Designations.Add(designation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +66,7 @@ namespace HRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Designation designation = db.Designation.Find(id);
+            Designation designation = db.Designations.Find(id);
             if (designation == null)
             {
                 return HttpNotFound();
@@ -96,7 +97,7 @@ namespace HRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Designation designation = db.Designation.Find(id);
+            Designation designation = db.Designations.Find(id);
             if (designation == null)
             {
                 return HttpNotFound();
@@ -109,8 +110,8 @@ namespace HRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Designation designation = db.Designation.Find(id);
-            db.Designation.Remove(designation);
+            Designation designation = db.Designations.Find(id);
+            db.Designations.Remove(designation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

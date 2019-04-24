@@ -36,8 +36,8 @@ namespace HRM.Models
 
         public System.Data.Entity.DbSet<HRM.Models.Section> Sections { get; set; }
 
-        public System.Data.Entity.DbSet<HRM.Models.Designation> Designation { get; set; }
+        public System.Data.Entity.DbSet<HRM.Models.Designation> Designations { get; set; }
 
-        public System.Data.Entity.DbSet<HRM.Models.Employee> Employee { get; set; }
+        public System.Data.Entity.DbSet<HRM.Models.Employee> Employees { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace HRM.Controllers
         public ActionResult Index()
         {
             var depts = db.Depts.Include(d => d.Division);
+            
             return View(depts.ToList());
         }
 

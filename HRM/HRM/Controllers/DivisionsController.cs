@@ -17,6 +17,7 @@ namespace HRM.Controllers
         // GET: Divisions
         public ActionResult Index()
         {
+            
             return View(db.Divisions.ToList());
         }
 

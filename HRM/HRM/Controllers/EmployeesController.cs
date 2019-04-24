@@ -17,7 +17,7 @@ namespace HRM.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var employee = db.Employee.Include(e => e.Designation);
+            var employee = db.Employees.Include(e => e.Designation);
             return View(employee.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace HRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employee.Find(id);
+            Employee employee = db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace HRM.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName");
+            ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName");
             return View();
         }
 
@@ -52,12 +52,12 @@ namespace HRM.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Employee.Add(employee);
+                db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName", employee.DesignationId);
+            ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
             return View(employee);
         }
 
@@ -68,12 +68,12 @@ namespace HRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employee.Find(id);
+            Employee employee = db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName", employee.DesignationId);
+            ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
             return View(employee);
         }
 
@@ -90,7 +90,7 @@ namespace HRM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DesignationId = new SelectList(db.Designation, "id", "ShortName", employee.DesignationId);
+            ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
             return View(employee);
         }
 
@@ -101,7 +101,7 @@ namespace HRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employee.Find(id);
+            Employee employee = db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace HRM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employee.Find(id);
-            db.Employee.Remove(employee);
+            Employee employee = db.Employees.Find(id);
+            db.Employees.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
