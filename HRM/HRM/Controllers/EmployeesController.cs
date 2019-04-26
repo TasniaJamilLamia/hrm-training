@@ -39,7 +39,8 @@ namespace HRM.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName");
+            ViewBag.DesignationId = new SelectList(db.Designations, "id", "DesignationName");
+            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptName");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,DesignationId")] Employee employee)
+        public ActionResult Create([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,BloodGroup,Address,PhoneNo,Email,DesignationId,DeptId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +75,7 @@ namespace HRM.Controllers
                 return HttpNotFound();
             }
             ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
+            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptName", employee.DeptId);
             return View(employee);
         }
 
@@ -82,7 +84,7 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,DesignationId")] Employee employee)
+        public ActionResult Edit([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,BloodGroup,Address,PhoneNo,Email,DesignationId,DeptId")] Employee employee)
         {
             if (ModelState.IsValid)
             {

@@ -19,5 +19,6 @@ namespace HRM.Models
         public virtual Division Division { get; set; }
 
         public List<Section> Sec { get; set; }
+        public List<Employee> Employee { get; set; }
     }
 }

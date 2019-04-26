@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201904191113310_mig051.Designer.cs">
       <DependentUpon>201904191113310_mig051.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904261006419_mig071.cs" />
+    <Compile Include="Migrations\201904261006419_mig071.Designer.cs">
+      <DependentUpon>201904261006419_mig071.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dept.cs" />
@@ -335,11 +339,11 @@
     <Content Include="Views\Sections\Create.cshtml" />
     <Content Include="Views\Sections\Index.cshtml" />
     <Content Include="Views\Sections\Edit.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -374,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904191113310_mig051.resx">
       <DependentUpon>201904191113310_mig051.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904261006419_mig071.resx">
+      <DependentUpon>201904261006419_mig071.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

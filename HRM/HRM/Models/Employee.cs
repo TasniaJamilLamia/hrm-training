@@ -32,6 +32,22 @@ namespace HRM.Models
         [Display(Name = "Mothers Name")]
         [StringLength(150)]
         public string MothersName { get; set; }
+
+        [StringLength(150)]
+        public String BloodGroup { get; set; }
+
+        [StringLength(150)]
+        public string Address { get; set; }
+
+        
+        public int PhoneNo { get; set; }
+
+        [StringLength(100)]
+        public string Email { get; set; }
+
+        public int DeptId { get; set; }
+        [ForeignKey("DeptId")]
+        public virtual Dept Department{ get; set; }
         public int DesignationId { get; set; }
         [ForeignKey("DesignationId")]
         public virtual Designation Designation { get; set; }

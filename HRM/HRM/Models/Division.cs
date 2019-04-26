@@ -22,5 +22,7 @@ namespace HRM.Models
 
         public List<Designation> Designation { get; set; }
 
+        
+
     }
 }
