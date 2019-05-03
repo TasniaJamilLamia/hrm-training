@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201904261006419_mig071.Designer.cs">
       <DependentUpon>201904261006419_mig071.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905030939247_mig08.cs" />
+    <Compile Include="Migrations\201905030939247_mig08.Designer.cs">
+      <DependentUpon>201905030939247_mig08.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dept.cs" />
@@ -266,6 +270,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\emp-blank-avatar.png" />
+    <Content Include="Images\img2194509086.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -381,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904261006419_mig071.resx">
       <DependentUpon>201904261006419_mig071.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905030939247_mig08.resx">
+      <DependentUpon>201905030939247_mig08.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

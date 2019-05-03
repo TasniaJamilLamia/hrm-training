@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Department.DeptCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.DeptCode)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Designation.ShortName)
         </dt>
 
@@ -58,9 +66,69 @@
             @Html.DisplayFor(model => model.MothersName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodGroup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodGroup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeePhotoPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeePhotoPath)
+        </dd>
+
+        <dt>
+            Employee Photo
+        </dt>
+
+        <dd>
+            <div style="height:200px; width:200px; overflow:auto;">
+                <img id="imgEmpPhoto" src="@Model.EmployeePhotoPath.TrimStart('~')" alt="Employee Image">
+            </div>
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        //Display any size into 200 px X 200 px
+        $(document).ready(function () {
+            $('#imgEmpPhoto').css({ 'height': '200px', 'width': '200px' });
+        });
+    </script>
+}

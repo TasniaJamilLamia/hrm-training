@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HRM.Models;
+using System.IO;
 
 namespace HRM.Controllers
 {
@@ -17,8 +18,8 @@ namespace HRM.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var employee = db.Employees.Include(e => e.Designation);
-            return View(employee.ToList());
+            var employees = db.Employees.Include(e => e.Department).Include(e => e.Designation);
+            return View(employees.ToList());
         }
 
         // GET: Employees/Details/5
@@ -39,8 +40,8 @@ namespace HRM.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.DesignationId = new SelectList(db.Designations, "id", "DesignationName");
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptName");
+            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode");
+            ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName");
             return View();
         }
 
@@ -49,15 +50,27 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,BloodGroup,Address,PhoneNo,Email,DesignationId,DeptId")] Employee employee)
+        public ActionResult Create([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,BloodGroup,Address,PhoneNo,Email,DeptId,DesignationId,EmployeePhotoPath,EmployeePhoto")] Employee employee)
         {
             if (ModelState.IsValid)
             {
+                //for saving photo
+
+                if(employee.EmployeePhoto!=null)
+                {
+                    String fileName = Path.GetFileNameWithoutExtension(employee.EmployeePhoto.FileName);
+                    string extension = Path.GetExtension(employee.EmployeePhoto.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    employee.EmployeePhotoPath = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    employee.EmployeePhoto.SaveAs(fileName);
+                }
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", employee.DeptId);
             ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
             return View(employee);
         }
@@ -74,8 +87,8 @@ namespace HRM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", employee.DeptId);
             ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
-            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptName", employee.DeptId);
             return View(employee);
         }
 
@@ -84,14 +97,28 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,BloodGroup,Address,PhoneNo,Email,DesignationId,DeptId")] Employee employee)
+        public ActionResult Edit([Bind(Include = "id,EmployeeCode,FullName,NickName,FathersName,MothersName,BloodGroup,Address,PhoneNo,Email,DeptId,DesignationId,EmployeePhotoPath,EmployeePhoto")] Employee employee)
         {
             if (ModelState.IsValid)
             {
+
                 db.Entry(employee).State = EntityState.Modified;
+
+                //For editing photo
+                if (employee.EmployeePhoto != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(employee.EmployeePhoto.FileName);
+                    string extension = Path.GetExtension(employee.EmployeePhoto.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    employee.EmployeePhotoPath = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    employee.EmployeePhoto.SaveAs(fileName);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DeptId = new SelectList(db.Depts, "id", "DeptCode", employee.DeptId);
             ViewBag.DesignationId = new SelectList(db.Designations, "id", "ShortName", employee.DesignationId);
             return View(employee);
         }

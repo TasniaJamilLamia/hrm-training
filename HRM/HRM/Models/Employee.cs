@@ -51,5 +51,13 @@ namespace HRM.Models
         public int DesignationId { get; set; }
         [ForeignKey("DesignationId")]
         public virtual Designation Designation { get; set; }
+
+
+        [Display(Name = "Upload File")]
+        public string EmployeePhotoPath { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase EmployeePhoto { get; set; }
+
     }
 }
